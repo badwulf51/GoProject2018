@@ -15,6 +15,14 @@ type nfa struct {
 	accept  *state
 } // End type
 
+// Accepts user input
+func GetInput() string {
+	var input string
+	fmt.Scan(&input)
+	return input
+
+}
+
 // pofix regular expresion to nfa
 func poregtonfa(pofix string) *nfa {
 	nfastack := []*nfa{}
