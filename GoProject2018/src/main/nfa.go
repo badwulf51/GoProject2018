@@ -124,6 +124,19 @@ func pomatch(po string, s string) bool {
 }
 
 func main() {
-	fmt.Println(pomatch("ab.c*|", "cccc"))
+	fmt.Print("Please enter a regular expression: ")
+
+	var input1 = GetInput()
+
+	fmt.Println("Postfix: ", intopost(input1))
+	input1 = intopost(input1)
+
+	fmt.Print("Enter a string: ")
+	var input2 = GetInput()
+
+	nfa := pomatch(input1, input2)
+	fmt.Println("Match = ", nfa)
+
+	fmt.Println(pomatch("ab.c*|", "c"))
 
 }
