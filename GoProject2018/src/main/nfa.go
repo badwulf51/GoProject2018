@@ -16,7 +16,7 @@ type nfa struct {
 } // End type
 
 func intopost(infix string) string {
-	specials := map[rune]int{'*': 10, '.': 9, '|': 8}
+	specials := map[rune]int{'*': 10, '.': 6, '+': 8, '|': 8}
 
 	pofix, s := []rune{}, []rune{}
 
@@ -98,7 +98,16 @@ func poregtonfa(pofix string) *nfa {
 			frag.accept.edge2 = &accept
 
 			nfastack = append(nfastack, &nfa{initial: &intial, accept: &accept})
+		case '+':
+			frag := nfastack[len(nfastack)-1]
+			nfastack = nfastack[:len(nfastack)-1]
 
+			accept := state{}
+			initial := state{edge1: frag.initial, edge2: &accept}
+
+			frag.accept.edge1 = &initial
+
+			nfastack = append(nfastack, &nfa{initial: frag.initial, accept: &accept})
 		default:
 			accept := state{}
 			initial := state{symbol: r, edge1: &accept}
