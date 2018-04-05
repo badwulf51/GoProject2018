@@ -15,6 +15,43 @@ type nfa struct {
 	accept  *state
 } // End type
 
+func intopost(infix string) string {
+	specials := map[rune]int{'*': 10, '.': 9, '|': 8}
+
+	pofix, s := []rune{}, []rune{}
+
+	for _, r := range infix {
+		switch {
+		case r == '(':
+			s = append(s, r)
+
+		case r == ')':
+			for s[len(s)-1] != '(' {
+				pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
+			} // End For
+			s = s[:len(s)-1]
+		case specials[r] > 0:
+			for len(s) > 0 && specials[r] <= specials[s[len(s)-1]] {
+
+				pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
+
+			} // End For
+			s = append(s, r)
+		default:
+			pofix = append(pofix, r)
+
+		} // End Switch
+
+	} // End For
+
+	for len(s) > 0 {
+		pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
+	}
+
+	return string(pofix)
+}
+
+
 // Accepts user input
 func GetInput() string {
 	var input string
