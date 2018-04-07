@@ -9,7 +9,7 @@ type state struct {
 	edge1  *state
 	edge2  *state
 } // End type
-
+// Helper state for fna
 type nfa struct {
 	initial *state
 	accept  *state
