@@ -33,19 +33,34 @@ To start off my project I first followed video tutorials provided by Dr. Ian Mcl
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+A step by step series of examples that tell you have to get a development running
 
-Say what the step will be
 
-```
-Give the example
-```
-
-And repeat
 
 ```
-until finished
+Download zip file of project.
 ```
+```
+Unzip folder to drive
+```
+```
+navigate via cmd to the folder 
+```
+```
+Type set GOPATH = c\GoProject2018 and hit enter
+```
+```
+Type set GOBIN = c\GoProject2018\bin and hit enter
+```
+
+For Running the program:
+
+```
+Type go run src/main/nfa.go 
+```
+
+
+
 
 End with an example of getting some data out of the system or using it for a little demo
 
