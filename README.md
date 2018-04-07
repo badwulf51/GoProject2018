@@ -1,6 +1,6 @@
-# Project Title
+# Regular expression To Nfa Tester
 
-One Paragraph of project description goes here
+This is an app that converts a regex from infix to postfix and tests it againts a string. 
 
 ## Getting Started
 
