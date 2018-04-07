@@ -184,8 +184,9 @@ func pomatch(po string, s string) bool {
 
 }
 
+// Main function
 func main() {
-	fmt.Print("Please enter a regular expression: ")
+	fmt.Print("Please enter the infix of a regular expression: ")
 
 	var input1 = GetInput()
 
@@ -197,7 +198,8 @@ func main() {
 
 	nfa := pomatch(input1, input2)
 	fmt.Println("Match = ", nfa)
-
-	fmt.Println(pomatch("ab.c*|", "c"))
+	fmt.Print(" ")
+	fmt.Print("Hard coded input result is: ")
+	fmt.Println(pomatch("ab.c*|", "ab"))
 
 }
