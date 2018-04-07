@@ -4,7 +4,7 @@ This is an app that converts a regex from infix to postfix and tests it againts 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To start off my project I first followed video tutorials provided by Dr. Ian Mcloughlin which were provided on my college's learnonline hub at gmit. Following the videos was an easy task but it took me a few watches of each one to fully grasp and understand the complexity of the code provided as well as actually getting my head wrapped around what the project done. 
 
 ### Prerequisites
 
