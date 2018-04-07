@@ -135,6 +135,9 @@ func poregtonfa(pofix string) *nfa {
 
 	} // End for
 	
+	if len(nfastack) != 1 {
+		fmt.Println("ERROR! more than one nfa found on:", len(nfastack), nfastack)
+	}
 	
 	// returns the nfa
 	return nfastack[0]
