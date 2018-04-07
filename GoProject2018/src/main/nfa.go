@@ -126,9 +126,7 @@ func poregtonfa(pofix string) *nfa {
 
 	} // End for
 
-	if len(nfastack) != 1 {
-		fmt.Println("Uh Oh:", len(nfastack), nfastack)
-	}
+	
 
 	return nfastack[0]
 
