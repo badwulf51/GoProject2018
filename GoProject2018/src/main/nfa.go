@@ -61,21 +61,29 @@ func GetInput() string {
 }
 
 // pofix regular expresion to nfa
+// pofix regular expresion to nfa, returns pointer to nfa struct
 func poregtonfa(pofix string) *nfa {
+	// creates an array for nfa
 	nfastack := []*nfa{}
-
+	// loops for each element that is passed into function
 	for _, r := range pofix {
+		// switch statement for various reg ex characters
 		switch r {
+		// for character .
 		case '.':
-
+			// frag 2 gets value of the last element of the nfastack
 			frag2 := nfastack[len(nfastack)-1]
+			// sets nfastack to the value of the last element in the stack array
 			nfastack = nfastack[:len(nfastack)-1]
+			// frag 1 gets the value of the last element of the stack
 			frag1 := nfastack[len(nfastack)-1]
+			// same as before
 			nfastack = nfastack[:len(nfastack)-1]
 
 			frag1.accept.edge1 = frag2.initial
-
+			// nfa is appended with the intial state of frag 1, frag 2 is accept state
 			nfastack = append(nfastack, &nfa{initial: frag1.initial, accept: frag2.accept})
+			// for next case, comments are mostly the same
 		case '|':
 			frag2 := nfastack[len(nfastack)-1]
 			nfastack = nfastack[:len(nfastack)-1]
@@ -98,15 +106,15 @@ func poregtonfa(pofix string) *nfa {
 			frag.accept.edge2 = &accept
 
 			nfastack = append(nfastack, &nfa{initial: &intial, accept: &accept})
-			
-			case '?':
+		// state for ? symbol, works sometimes but seems to be a bit broken
+		case '?':
 			frag := nfastack[len(nfastack)-1]
 			nfastack = nfastack[:len(nfastack)-1]
 
 			initial := state{edge1: frag.initial, edge2: frag.accept}
 
 			nfastack = append(nfastack, &nfa{initial: &initial, accept: frag.accept})
-			
+		// same as the ? symbol, sometimes works, sometimes returns index out of range error, trying to fix
 		case '+':
 			frag := nfastack[len(nfastack)-1]
 			nfastack = nfastack[:len(nfastack)-1]
@@ -117,6 +125,7 @@ func poregtonfa(pofix string) *nfa {
 			frag.accept.edge1 = &initial
 
 			nfastack = append(nfastack, &nfa{initial: frag.initial, accept: &accept})
+
 		default:
 			accept := state{}
 			initial := state{symbol: r, edge1: &accept}
@@ -125,13 +134,12 @@ func poregtonfa(pofix string) *nfa {
 		} // End switch
 
 	} // End for
-
 	
-
+	
+	// returns the nfa
 	return nfastack[0]
 
 } // End func
-
 func addState(l []*state, s *state, a *state) []*state {
 	l = append(l, s)
 
