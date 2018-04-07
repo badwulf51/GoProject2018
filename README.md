@@ -62,7 +62,7 @@ Type go run src/main/nfa.go
 
 
 
-End with an example of getting some data out of the system or using it for a little demo
+Please note: bin folder and pkg folder were not uploaded during intial commit, you can make them by just adding an empty folder called "bin" and one called "pkg" in the first directory with the src folder
 
 ## Running the tests
 
