@@ -75,25 +75,7 @@ Hardcoded match result will also be returned (this works)
 Example of pofix with true string: 
 ab.c*| = ccccccc
 
-### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
