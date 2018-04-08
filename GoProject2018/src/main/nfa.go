@@ -187,6 +187,14 @@ func pomatch(po string, s string) bool {
 
 }
 
+func stringTrimmer(s string) string {
+	if len(s) > 0 {
+		s = s[:len(s)-2]
+	}
+	return s
+}
+
+
 // Main function
 func main() {
 	fmt.Print("Please enter the infix of a regular expression: ")
