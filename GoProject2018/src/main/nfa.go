@@ -1,5 +1,6 @@
 package main
 
+// Imports
 import (
 	"fmt"
 )
@@ -14,7 +15,7 @@ type nfa struct {
 	initial *state
 	accept  *state
 } // End type
-
+// changes infix to pofix
 func intopost(infix string) string {
 	specials := map[rune]int{'*': 10, '.': 6, '?': 8, '+': 9, '|': 5}
 
@@ -46,13 +47,13 @@ func intopost(infix string) string {
 
 	for len(s) > 0 {
 		pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
+		s = s[:len(s)-1]
 	}
 
 	return string(pofix)
 }
 
-
-// Accepts user input
+// Function for accepting user input
 func GetInput() string {
 	var input string
 	fmt.Scan(&input)
@@ -60,7 +61,6 @@ func GetInput() string {
 
 }
 
-// pofix regular expresion to nfa
 // pofix regular expresion to nfa, returns pointer to nfa struct
 func poregtonfa(pofix string) *nfa {
 	// creates an array for nfa
@@ -134,18 +134,19 @@ func poregtonfa(pofix string) *nfa {
 		} // End switch
 
 	} // End for
-	
+	// error message
 	if len(nfastack) != 1 {
 		fmt.Println("ERROR! more than one nfa found on:", len(nfastack), nfastack)
 	}
-	
 	// returns the nfa
 	return nfastack[0]
 
 } // End func
+// add state function, used to return an array of pointers to the struct
 func addState(l []*state, s *state, a *state) []*state {
+	// appens state pointer to the 1 array
 	l = append(l, s)
-
+	// if statment, if it is not equal to accept
 	if s != a && s.symbol == 0 {
 		l = addState(l, s.edge1, a)
 		if s.edge2 != nil {
@@ -156,7 +157,7 @@ func addState(l []*state, s *state, a *state) []*state {
 
 	return l
 } // End add state func
-
+// function for matching
 func pomatch(po string, s string) bool {
 	ismatch := false
 	ponfa := poregtonfa(po)
@@ -182,11 +183,12 @@ func pomatch(po string, s string) bool {
 		}
 
 	}
-
+	// returns true or false if nfa matches the pofix
 	return ismatch
 
 }
 
+// function for trimming string, currently trying to incorparate
 func stringTrimmer(s string) string {
 	if len(s) > 0 {
 		s = s[:len(s)-2]
@@ -194,9 +196,9 @@ func stringTrimmer(s string) string {
 	return s
 }
 
-
 // Main function
 func main() {
+
 	fmt.Print("Please enter the infix of a regular expression: ")
 
 	var input1 = GetInput()
